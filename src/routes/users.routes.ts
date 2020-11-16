@@ -30,7 +30,6 @@ usersRouter.patch(
     ensureAuthenticated,
     upload.single('avatar'),
     async (request, response) => {
-      try {
         const UpdateUserAvatar = new UpdateUserAvatarService();
         
         const user = await UpdateUserAvatar.execute({
@@ -47,9 +46,6 @@ usersRouter.patch(
           };
 
         return response.json(userWithoutPassword);
-    } catch (err) {
-        return response.status(400).json({ error: err.message });
-      }
     },
 );
 
